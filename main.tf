@@ -9,7 +9,7 @@ resource "openstack_compute_instance_v2" "public-vm" {
     image_name = "Ubuntu-20.04"
     flavor_name = "standard.small"
     key_pair = "${openstack_compute_keypair_v2.cloud-server-key.name}"
-    security_groups = ["default"]
+    security_groups = [openstack_networking_secgroup_v2.secgroup_1.name]
 
     network {
         name = "project_2011837"
@@ -21,7 +21,7 @@ resource "openstack_compute_instance_v2" "testvms" {
     image_name = "Ubuntu-20.04"
     flavor_name = "standard.small"
     key_pair = "${openstack_compute_keypair_v2.cloud-server-key.name}"
-    security_groups = ["default"]
+    security_groups = [openstack_networking_secgroup_v2.secgroup_2.name]
     count = 3
     
     network {
